@@ -1,0 +1,7 @@
+[
+  "tests/differential_tests/test_differential.py::test_model_prediction_differential",
+  "tests/test_controller.py::test_health_endpoint_returns_200",
+  "tests/test_controller.py::test_prediction_endpoint_returns_prediction",
+  "tests/test_controller.py::test_version_endpoint_returns_version",
+  "tests/test_validation.py::test_prediction_endpoint_validation_200"
+]

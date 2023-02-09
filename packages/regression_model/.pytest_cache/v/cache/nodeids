@@ -1,0 +1,4 @@
+[
+  "tests/test_predict.py::test_make_multiple_predictions",
+  "tests/test_predict.py::test_make_single_prediction"
+]

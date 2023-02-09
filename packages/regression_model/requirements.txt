@@ -1,0 +1,16 @@
+# -- Production Requierements --
+numpy>=1.18.1
+pandas>=0.25.3
+scikit-learn>=0.22.1
+joblib
+
+# -- packaging --
+setuptools>=41.4.0
+wheel>=0.33.6
+
+# -- Testing Requirements --
+pytest
+attrs==19.1.0
+
+# -- Dataset Fetching --
+kaggle

@@ -1,6 +1,5 @@
 import pandas as pd
 import joblib
-from sklearn.externals import joblib
 from sklearn.pipeline import Pipeline
 
 from regression_model.config import config

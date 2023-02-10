@@ -5,7 +5,7 @@ from sklearn.pipeline import Pipeline
 from regression_model.config import config
 from regression_model.config import logging_config
 from regression_model import __version__ as _version
-import os
+
 import logging
 import typing as t
 
@@ -30,16 +30,15 @@ def save_pipeline(*, pipeline_to_persist):
     save_path = config.TRAINED_MODEL_DIR / save_file_name
 
     remove_old_pipelines(files_to_keep=save_file_name)
-    joblib.dump(pipeline_to_persist.joblib, save_path)
+    joblib.dump(pipeline_to_persist, save_path)
     _logger.info(f"saved pipeline: {save_file_name}")
 
 
 def load_pipeline(*, file_name: str) -> Pipeline:
     """Load a persisted pipeline."""
-    dir_path = f'{config.TRAINED_MODEL_DIR}'
-    file_path = os.path.join(dir_path,file_name)
-    # file_path = config.TRAINED_MODEL_DIR / file_name
-    trained_model = joblib.load(file_path)
+
+    file_path = config.TRAINED_MODEL_DIR / file_name
+    trained_model = joblib.load(filename=file_path)
     return trained_model
 
 

@@ -27,7 +27,7 @@ def save_pipeline(*, pipeline_to_persist):
 
     # Prepare versioned save file name
     save_file_name = f"{config.PIPELINE_SAVE_FILE}{_version}.pkl"
-    save_path = config.PACKAGE_ROOT / config.TRAINED_MODEL_DIR / save_file_name
+    save_path = config.TRAINED_MODEL_DIR / save_file_name
 
     remove_old_pipelines(files_to_keep=save_file_name)
     joblib.dump(pipeline_to_persist, save_path)
@@ -37,7 +37,7 @@ def save_pipeline(*, pipeline_to_persist):
 def load_pipeline(*, file_name: str) -> Pipeline:
     """Load a persisted pipeline."""
 
-    file_path = f"{config.PACKAGE_ROOT}/{config.TRAINED_MODEL_DIR} / {file_name}"
+    file_path = f"{config.TRAINED_MODEL_DIR} / {file_name}"
     trained_model = joblib.load(filename=str(file_path))
     return trained_model
 

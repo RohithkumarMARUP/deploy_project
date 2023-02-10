@@ -38,7 +38,7 @@ def load_pipeline(*, file_name: str) -> Pipeline:
     """Load a persisted pipeline."""
 
     file_path = config.TRAINED_MODEL_DIR / file_name
-    trained_model = joblib.load(file_name=file_path)
+    trained_model = joblib.load(filename=file_path)
     return trained_model
 
 

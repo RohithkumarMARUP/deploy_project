@@ -16,4 +16,4 @@ attrs==19.1.0
 --extra-index-url=${PIP_EXTRA_INDEX_URL}
 
 # Install from gemfury
-regression-model==0.1.0
+regression_model==0.1.0

@@ -1,6 +1,6 @@
 version: 2
 
-obs:
+jobs:
   
   test_regression_model:
     working_directory: ~/project

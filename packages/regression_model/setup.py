@@ -70,6 +70,9 @@ setup(
         'Programming Language :: Python',
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: Implementation :: CPython',
-        'Programming Language :: Python :: Implementation :: PyPy'
+        'Programming Language :: Python :: Implementation :: PyPy',
+        'Framework :: Pytest',
+        'Topic :: Software Development :: Version Control :: Git',
+        'Framework :: Flask'
     ],
 )

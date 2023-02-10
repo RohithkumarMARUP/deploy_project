@@ -25,6 +25,7 @@ def run_training() -> None:
     pipeline.price_pipe.fit(X_train[config.FEATURES], y_train)
 
     _logger.info(f"saving model version: {_version}")
+    
     save_pipeline(pipeline_to_persist=pipeline.price_pipe)
 
 

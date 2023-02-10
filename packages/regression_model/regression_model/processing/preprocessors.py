@@ -21,6 +21,7 @@ class CategoricalImputer(BaseEstimator, TransformerMixin):
         for feature in self.variables:
             X[feature] = X[feature].fillna("Missing")
         return X
+
 class NumericalImputer(BaseEstimator, TransformerMixin):
     """Numerical missing value imputer."""
     def __init__(self, variables=None):
@@ -39,6 +40,7 @@ class NumericalImputer(BaseEstimator, TransformerMixin):
         for feature in self.variables:
             X[feature].fillna(self.imputer_dict_[feature], inplace=True)
         return X
+
 class TemporalVariableEstimator(BaseEstimator, TransformerMixin):
     """Temporal variable calculator."""
     def __init__(self, variables=None, reference_variable=None):
@@ -55,6 +57,7 @@ class TemporalVariableEstimator(BaseEstimator, TransformerMixin):
         for feature in self.variables:
             X[feature] = X[self.reference_variables] - X[feature]
         return X
+
 class RareLabelCategoricalEncoder(BaseEstimator, TransformerMixin):
     """Rare label categorical encoder"""
     def __init__(self, tol=0.05, variables=None):
@@ -79,6 +82,7 @@ class RareLabelCategoricalEncoder(BaseEstimator, TransformerMixin):
                 X[feature].isin(self.encoder_dict_[feature]), X[feature], "Rare"
             )
         return X
+
 class CategoricalEncoder(BaseEstimator, TransformerMixin):
     """String to numbers categorical encoder."""
     def __init__(self, variables=None):
@@ -111,6 +115,7 @@ class CategoricalEncoder(BaseEstimator, TransformerMixin):
                 f"transforming categorical variables: {vars_.keys()}"
             )
         return X
+
 class DropUnecessaryFeatures(BaseEstimator, TransformerMixin):
     def __init__(self, variables_to_drop=None):
         self.variables = variables_to_drop

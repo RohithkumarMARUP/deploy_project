@@ -8,6 +8,8 @@ Werkzeug==2.0.3
 # -- Schema Validation --
 marshmallow==2.17.0
 
+joblib==0.17.0
+
 --extra-index-url=${PIP_EXTRA_INDEX_URL}
 
 # Install from gemfury

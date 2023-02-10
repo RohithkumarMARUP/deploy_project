@@ -26,7 +26,7 @@ def save_pipeline(*, pipeline_to_persist):
     """
 
     # Prepare versioned save file name
-    save_file_name = f"{config.PIPELINE_SAVE_FILE}{_version}.pkl"
+    save_file_name = f"{config.PIPELINE_SAVE_FILE}{_version}"
     save_path = config.TRAINED_MODEL_DIR / save_file_name
 
     remove_old_pipelines(files_to_keep=save_file_name)
@@ -49,7 +49,7 @@ def remove_old_pipelines(*, files_to_keep) -> None:
     mapping between the package version and the model
     version to be imported and used by other applications.
     """
-    do_not_delete = files_to_keep + [ "__init__.py"]
+    
     for model_file in config.TRAINED_MODEL_DIR.iterdir():
-        if model_file.name not in do_not_delete:
+        if model_file.name not in [files_to_keep,'__init__.py']:
             model_file.unlink()

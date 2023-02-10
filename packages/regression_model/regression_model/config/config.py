@@ -3,7 +3,7 @@ import pathlib
 import regression_model
 
 
-PACKAGE_ROOT = pathlib.Path(regression_model.__file__).resolve().parent.parent
+PACKAGE_ROOT = pathlib.Path(regression_model.__file__).resolve().parent
 TRAINED_MODEL_DIR = PACKAGE_ROOT /"trained_models"
 DATASET_DIR = PACKAGE_ROOT / "datasets"
 
@@ -91,8 +91,6 @@ CATEGORICAL_NA_NOT_ALLOWED = [
     feature for feature in CATEGORICAL_VARS if feature not in CATEGORICAL_VARS_WITH_NA
 ]
 
-PIPELINE_NAME = "lasso_regression"
-
-PIPELINE_SAVE_FILE = f"{PIPELINE_NAME}_output_v"
+PIPELINE_SAVE_FILE = f"lasso_regression_output_version:--->"
 
 ACCEPTABLE_MODEL_DIFFERENCE = 0.05

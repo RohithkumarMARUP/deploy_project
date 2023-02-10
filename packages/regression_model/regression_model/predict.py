@@ -10,7 +10,7 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
-pipeline_file_name = f"{config.PIPELINE_SAVE_FILE}{_version}.pkl"
+pipeline_file_name = f"{config.PIPELINE_SAVE_FILE}{_version}"
 _price_pipe = load_pipeline(file_name=pipeline_file_name)
 
 

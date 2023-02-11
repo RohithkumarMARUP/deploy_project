@@ -38,7 +38,7 @@ def load_pipeline(*, file_name: str) -> Pipeline:
 
     file_path = config.TRAINED_MODEL_DIR/file_name
     
-    trained_model = joblib.load(filename=file_path)
+    trained_model = joblib.load('./packages/regression_model/trained_models/lasso_regression_output_v0.1.0.pkl')
     
     return trained_model
 

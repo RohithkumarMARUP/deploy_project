@@ -57,12 +57,12 @@ setup(
     author_email=EMAIL,
     python_requires=REQUIRES_PYTHON,
     url=URL,
-    packages=find_packages(exclude=('tests',)),
+    packages=find_packages(exclude=()),
     package_data={'regression_model': ['VERSION']},
     install_requires=list_reqs(),
     extras_require={},
     include_package_data=True,
-    license='MIT',
+    license='BSD 3',
     classifiers=[
         # Trove classifiers
         # Full list: https://pypi.python.org/pypi?%3Aaction=list_classifiers

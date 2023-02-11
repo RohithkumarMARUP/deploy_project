@@ -11,7 +11,7 @@ DESCRIPTION = 'Train and deploy regression model.'
 URL = 'https://github.com/RohithkumarMARUP/deploy_project'
 EMAIL = 'rohithkumarsep92@gmail.com'
 AUTHOR = 'rohithrudhvik'
-REQUIRES_PYTHON = '>=3.9.7'
+REQUIRES_PYTHON = '>=3.6.0'
 
 long_description = DESCRIPTION
 

@@ -26,7 +26,7 @@ def save_pipeline(*, pipeline_to_persist):
 
     # Prepare versioned save file name
     save_file_name = f"{config.PIPELINE_SAVE_FILE}{_version}.pkl"
-    save_path = config.TRAINED_MODEL_DIR/save_file_name
+    save_path = config.TRAINED_MODEL_DIR
     
     remove_old_pipelines(files_to_keep=[save_file_name])
     # pickle.dump(pipeline_to_persist, save_path)

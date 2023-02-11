@@ -29,7 +29,7 @@ def save_pipeline(*, pipeline_to_persist):
     save_path = config.TRAINED_MODEL_DIR/save_file_name
     
     remove_old_pipelines(files_to_keep=[save_file_name])
-    joblib.dump(pipeline_to_persist,'/home/circleci/project/venv/lib/python3.7/site-packages/regression_model/trained_models/lasso_regression_output_v0.1.0.pkl')
+    joblib.dump(pipeline_to_persist, save_path)
     _logger.info(f"saved pipeline: {save_file_name}")
 
 
@@ -38,7 +38,7 @@ def load_pipeline(*, file_name: str) -> Pipeline:
 
     file_path = config.TRAINED_MODEL_DIR/file_name
     
-    trained_model = joblib.load('/home/circleci/project/venv/lib/python3.7/site-packages/regression_model/trained_models/lasso_regression_output_v0.1.0.pkl')
+    trained_model = joblib.load(filename=file_path)
     
     return trained_model
 

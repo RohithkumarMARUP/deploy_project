@@ -11,7 +11,8 @@ jobs:
       - run:
           name: Runnning tests
           command: |
-            . external2_venv/bin/activate
+            virtualenv venv
+            . venv/bin/activate
             pip install --upgrade pip
             pip install -r packages/regression_model/requirements.txt
             chmod +x ./scripts/fetch_kaggle_dataset.sh
@@ -27,7 +28,8 @@ jobs:
       - run:
           name: Runnning tests
           command: |
-            . external2_venv/bin/activate
+            virtualenv venv
+            . venv/bin/activate
             pip install --upgrade pip
             pip install -r packages/ml_api/requirements.txt
             pytest -vv packages/ml_api/tests
@@ -41,12 +43,13 @@ jobs:
       - run: 
           name: Setup env
           command: |
-            . external2_venv/bin/activate
+            virtualenv venv
+            . venv/bin/activate
             pip install -r packages/regression_model/requirements.txt
       - run: 
           name: Publish model
           command: |
-            . external2_venv/bin/activate
+            . venv/bin/activate
             chmod +x ./scripts/fetch_kaggle_dataset.sh ./scripts/publish_model.sh
             ./scripts/fetch_kaggle_dataset.sh
             PYTHONPATH=./packages/regression_model python3 packages/regression_model/regression_model/train_pipeline.py
@@ -62,3 +65,5 @@ workflows:
       - test_ml_api:
           requires:
             - train_and_upload_regression_model
+
+            

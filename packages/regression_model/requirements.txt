@@ -16,4 +16,4 @@ wheel>=0.33.6
 # fetching datasets
 kaggle
 
-regression_model==0.1.0
+#regression_model==0.1.0

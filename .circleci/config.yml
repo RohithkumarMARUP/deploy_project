@@ -11,7 +11,6 @@ jobs:
       - run:
           name: Runnning tests
           command: |
-            source external2_venv
             . external2_venv/bin/activate
             pip install --upgrade pip
             pip install -r packages/regression_model/requirements.txt
@@ -28,7 +27,6 @@ jobs:
       - run:
           name: Runnning tests
           command: |
-            source external2_venv
             . external2_venv/bin/activate
             pip install --upgrade pip
             pip install -r packages/ml_api/requirements.txt
@@ -43,7 +41,6 @@ jobs:
       - run: 
           name: Setup env
           command: |
-            source external2_venv
             . external2_venv/bin/activate
             pip install -r packages/regression_model/requirements.txt
       - run: 

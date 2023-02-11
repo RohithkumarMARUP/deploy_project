@@ -46,7 +46,7 @@ def load_pipeline(*, file_name: str) -> Pipeline:
     return trained_model
 
 
-def remove_old_pipelines(*, files_to_keep) -> None:
+def remove_old_pipelines(*, files_to_keep: t.List[str]) -> None:
     """
     Remove old model pipelines.
     This is to ensure there is a simple one-to-one

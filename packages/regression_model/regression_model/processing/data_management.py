@@ -30,8 +30,8 @@ def save_pipeline(*, pipeline_to_persist):
     
     remove_old_pipelines(files_to_keep=[save_file_name])
     # pickle.dump(pipeline_to_persist, save_path)
-    with open(file_path, "wb") as save_path:
-        pickle.dump(pipeline_to_persist, save_path)
+    with open(save_path, "wb") as file:
+        pickle.dump(pipeline_to_persist, file)
     _logger.info(f"saved pipeline: {save_file_name}")
 
 

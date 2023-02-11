@@ -1,5 +1,5 @@
 import pandas as pd
-import pickle
+import joblib
 from sklearn.pipeline import Pipeline
 from regression_model.config import config
 from regression_model.config import logging_config
@@ -26,34 +26,21 @@ def save_pipeline(*, pipeline_to_persist):
 
     # Prepare versioned save file name
     save_file_name = f"{config.PIPELINE_SAVE_FILE}{_version}.pkl"
-    save_path = config.TRAINED_MODEL_DIR
+    save_path = config.TRAINED_MODEL_DIR/save_file_name
     
     remove_old_pipelines(files_to_keep=[save_file_name])
-    # pickle.dump(pipeline_to_persist, save_path)
-    with open(save_path, "wb") as file:
-        pickle.dump(pipeline_to_persist, file)
+    joblib.dump(pipeline_to_persist, save_path)
     _logger.info(f"saved pipeline: {save_file_name}")
 
 
 def load_pipeline(*, file_name: str) -> Pipeline:
     """Load a persisted pipeline."""
 
-    file_path = config.TRAINED_MODEL_DIR / file_name
+    file_path = config.TRAINED_MODEL_DIR/file_name
     
-    with open(file_path, "rb") as file:
-        trained_model = pickle.load(file)
+    trained_model = joblib.load(filename=file_path)
     
     return trained_model
-
-
-# def load_pipeline(*, file_name: str) -> Pipeline:
-#     """Load a persisted pipeline."""
-
-#     file_path = config.TRAINED_MODEL_DIR/file_name
-    
-#     trained_model = pickle.load(filename=file_path)
-    
-#     return trained_model
 
 def remove_old_pipelines(*, files_to_keep: t.List[str]) -> None:
     """

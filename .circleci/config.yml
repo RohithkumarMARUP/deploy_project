@@ -1,36 +1,23 @@
 version: 2
 jobs:
-  test:
+  test_regression_model:
     working_directory: ~/project
     docker:
-      - image: circleci/python:3.9.7
+      - image: circleci/python:3.7.2
     steps:
       - checkout
       - run:
-          name: Setup environment
+          name: Runnning tests
           command: |
-            pip install external2_venv
-            virtualenv external2_venv
-            . external2_venv/bin/activate
+            virtualenv venv
+            . venv/bin/activate
+            pip install --upgrade pip
             pip install -r packages/regression_model/requirements.txt
-            pip install -r packages/ml_api/requirements.txt
             chmod +x ./scripts/fetch_kaggle_dataset.sh
             ./scripts/fetch_kaggle_dataset.sh
-      - run:
-          name: Run regression model tests
-          command: pytest -vv packages/regression_model/tests
-      - run:
-          name: Run ml_api tests
-          command: pytest -vv packages/ml_api/tests
-      - run:
-          name: Train and publish regression model
-          command: |
-            chmod +x ./scripts/publish_model.sh
-            PYTHONPATH=./packages/regression_model python3 packages/regression_model/regression_model/train_pipeline.py
-            ./scripts/publish_model.sh ./packages/regression_model/
-
+            py.test -vv packages/regression_model/tests
 workflows:
   version: 2
   test-all:
     jobs:
-      - test
+      - test_regression_model

@@ -3,14 +3,15 @@ jobs:
   test_regression_model:
     working_directory: ~/project
     docker:
-      - image: circleci/python:3.7.2
+      - image: circleci/python:3.9.7
     steps:
       - checkout
       - run:
           name: Runnning tests
           command: |
-            virtualenv venv
-            . venv/bin/activate
+            pip install virtualenv
+            virtualenv external2_venv
+            . external2_venv/bin/activate
             pip install --upgrade pip
             pip install -r packages/regression_model/requirements.txt
             chmod +x ./scripts/fetch_kaggle_dataset.sh
@@ -19,33 +20,35 @@ jobs:
   test_ml_api:
     working_directory: ~/project
     docker:
-      - image: circleci/python:3.7.2
+      - image: circleci/python:3.9.7
     steps:
       - checkout
       - run:
           name: Runnning tests
           command: |
-            virtualenv venv
-            . venv/bin/activate
+            pip install virtualenv
+            virtualenv external2_venv
+            . external2_venv/bin/activate
             pip install --upgrade pip
             pip install -r packages/ml_api/requirements.txt
             py.test -vv packages/ml_api/tests
   train_and_upload_regression_model:
     working_directory: ~/project
     docker:
-      - image: circleci/python:3.7.2
+      - image: circleci/python:3.9.7
     steps:
       - checkout
       - run: 
           name: Setup env
           command: |
-            virtualenv venv
-            . venv/bin/activate
+            pip install virtualenv
+            virtualenv external2_venv
+            . external2_venv/bin/activate
             pip install -r packages/regression_model/requirements.txt
       - run: 
           name: Publish model
           command: |
-            . venv/bin/activate
+            . external2_venv/bin/activate
             chmod +x ./scripts/fetch_kaggle_dataset.sh ./scripts/publish_model.sh
             ./scripts/fetch_kaggle_dataset.sh
             PYTHONPATH=./packages/regression_model python3 packages/regression_model/regression_model/train_pipeline.py

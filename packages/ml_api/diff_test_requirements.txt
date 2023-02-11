@@ -16,4 +16,4 @@ pytest
 attrs==19.1.0
 
 # Install from gemfury
-regression-model==0.1.0
+regression_model==0.1.0

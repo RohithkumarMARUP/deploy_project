@@ -9,19 +9,19 @@ jobs:
       - run:
           name: Setup environment
           command: |
-            pip install virtualenv
-            virtualenv venv
-            . venv/bin/activate
+            pip install external2_venv
+            virtualenv external2_venv
+            . external2_venv/bin/activate
             pip install -r packages/regression_model/requirements.txt
             pip install -r packages/ml_api/requirements.txt
             chmod +x ./scripts/fetch_kaggle_dataset.sh
             ./scripts/fetch_kaggle_dataset.sh
       - run:
           name: Run regression model tests
-          command: py.test -vv packages/regression_model/tests
+          command: pytest -vv packages/regression_model/tests
       - run:
           name: Run ml_api tests
-          command: py.test -vv packages/ml_api/tests
+          command: pytest -vv packages/ml_api/tests
       - run:
           name: Train and publish regression model
           command: |

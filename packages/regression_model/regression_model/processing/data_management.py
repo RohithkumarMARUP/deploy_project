@@ -29,6 +29,8 @@ def save_pipeline(*, pipeline_to_persist):
     save_path = config.TRAINED_MODEL_DIR/save_file_name
     
     remove_old_pipelines(files_to_keep=[save_file_name])
+    # pickle.dump(pipeline_to_persist, save_path)
+    with open(file_path, "wb") as save_path:
     pickle.dump(pipeline_to_persist, save_path)
     _logger.info(f"saved pipeline: {save_file_name}")
 
@@ -36,11 +38,22 @@ def save_pipeline(*, pipeline_to_persist):
 def load_pipeline(*, file_name: str) -> Pipeline:
     """Load a persisted pipeline."""
 
-    file_path = config.TRAINED_MODEL_DIR/file_name
+    file_path = config.TRAINED_MODEL_DIR / file_name
     
-    trained_model = pickle.load(filename=file_path)
+    with open(file_path, "rb") as file:
+        trained_model = pickle.load(file)
     
     return trained_model
+
+
+# def load_pipeline(*, file_name: str) -> Pipeline:
+#     """Load a persisted pipeline."""
+
+#     file_path = config.TRAINED_MODEL_DIR/file_name
+    
+#     trained_model = pickle.load(filename=file_path)
+    
+#     return trained_model
 
 def remove_old_pipelines(*, files_to_keep: t.List[str]) -> None:
     """

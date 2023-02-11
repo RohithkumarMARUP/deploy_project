@@ -27,18 +27,22 @@ def save_pipeline(*, pipeline_to_persist):
 
     # Prepare versioned save file name
     save_file_name = f"{config.PIPELINE_SAVE_FILE}{_version}.pkl"
-    save_path = f'{config.TRAINED_MODEL_DIR} / {save_file_name}'
+    save_path = config.TRAINED_MODEL_DIR / save_file_name
     
     remove_old_pipelines(files_to_keep=save_file_name)
-    joblib.dump(pipeline_to_persist, save_path)
+    with open(save_path,"wb") as f:
+        pickle.dump(pipeline_to_persist,f)
+
+    # joblib.dump(pipeline_to_persist, save_path)
     _logger.info(f"saved pipeline: {save_file_name}")
 
 
 def load_pipeline(*, file_name: str) -> Pipeline:
     """Load a persisted pipeline."""
 
-    file_path = f'{config.TRAINED_MODEL_DIR} / {file_name}'
-    trained_model = joblib.load(filename=file_path)
+    file_path = config.TRAINED_MODEL_DIR / file_name
+    with open(file_path,"rb") as f:
+        trained_model = pickle.load(f)
     return trained_model
 
 

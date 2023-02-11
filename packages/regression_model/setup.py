@@ -13,18 +13,7 @@ EMAIL = 'rohithkumarsep92@gmail.com'
 AUTHOR = 'rohithrudhvik'
 REQUIRES_PYTHON = '>=3.9.7'
 
-
-# What packages are required for this module to be executed?
-def list_reqs(fname='requirements.txt'):
-    with open(fname) as fd:
-        return fd.read().splitlines()
-
-
-# The rest you shouldn't have to touch too much :)
-# ------------------------------------------------
-# Except, perhaps the License and Trove Classifiers!
-# If you do change the License, remember to change the
-# Trove Classifier for that!
+long_description = DESCRIPTION
 
 here = os.path.abspath(os.path.dirname(__file__))
 
@@ -46,6 +35,21 @@ with open(PACKAGE_DIR / 'VERSION') as f:
     about['__version__'] = _version
 
 
+# What packages are required for this module to be executed?
+def list_reqs(fname='requirements.txt'):
+    with open(fname) as fd:
+        return fd.read().splitlines()
+
+
+# The rest you shouldn't have to touch too much :)
+# ------------------------------------------------
+# Except, perhaps the License and Trove Classifiers!
+# If you do change the License, remember to change the
+# Trove Classifier for that!
+
+
+
+
 # Where the magic happens:
 setup(
     name=NAME,
@@ -57,12 +61,12 @@ setup(
     author_email=EMAIL,
     python_requires=REQUIRES_PYTHON,
     url=URL,
-    packages=find_packages(exclude=()),
+    packages=find_packages(exclude=('tests',)),
     package_data={'regression_model': ['VERSION']},
     install_requires=list_reqs(),
     extras_require={},
     include_package_data=True,
-    license='BSD 3',
+    license='BSD-3',
     classifiers=[
         # Trove classifiers
         # Full list: https://pypi.python.org/pypi?%3Aaction=list_classifiers

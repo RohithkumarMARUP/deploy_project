@@ -1,7 +1,7 @@
 version: 2
 jobs:
   test_regression_model:
-    working_directory: ~/project
+    working_directory: ~/cicleci/project
     docker:
       - image: circleci/python:3.7.2
     steps:
@@ -17,7 +17,7 @@ jobs:
             ./scripts/fetch_kaggle_dataset.sh
             py.test -vv packages/regression_model/tests
   test_ml_api:
-    working_directory: ~/project
+    working_directory: ~/cicleci/project
     docker:
       - image: circleci/python:3.7.2
     steps:
@@ -31,7 +31,7 @@ jobs:
             pip install -r packages/ml_api/requirements.txt
             py.test -vv packages/ml_api/tests
   train_and_upload_regression_model:
-    working_directory: ~/project
+    working_directory: ~/cicleci/project
     docker:
       - image: circleci/python:3.7.2
     steps:

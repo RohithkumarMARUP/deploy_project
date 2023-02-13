@@ -13,6 +13,12 @@ _logger = logging.getLogger(__name__)
 pipeline_file_name = f"{config.PIPELINE_SAVE_FILE}{_version}.pkl"
 _price_pipe = load_pipeline(file_name=pipeline_file_name)
 
+try:
+    pipeline_file_name = f"{config.PIPELINE_SAVE_FILE}{_version}.pkl"
+    _price_pipe = load_pipeline(file_name=pipeline_file_name)
+except FileNotFoundError as e:
+    _logger.error(f"File not found: {e}")
+    raise
 
 def make_prediction(*, input_data: t.Union[pd.DataFrame,dict],) -> dict:
     """Make a prediction using the saved model pipeline."""

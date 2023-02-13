@@ -32,6 +32,11 @@ def save_pipeline(*, pipeline_to_persist):
     joblib.dump(pipeline_to_persist, save_path)
     _logger.info(f"saved pipeline: {save_file_name}")
 
+    try:
+        joblib.dump(pipeline_to_persist, save_path)
+    except FileNotFoundError as e:
+        _logger.error(f"Error saving the pipeline: {e}")
+
 
 def load_pipeline(*, file_name: str) -> Pipeline:
     """Load a persisted pipeline."""

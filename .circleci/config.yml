@@ -50,6 +50,25 @@ jobs:
             ./scripts/fetch_kaggle_dataset.sh
             PYTHONPATH=./packages/regression_model python3 packages/regression_model/regression_model/train_pipeline.py
             ./scripts/publish_model.sh ./packages/regression_model/
+
+    build_and _save_pipeline:
+    working_directory: ~/cicleci/project
+    docker:
+      - image: circleci/python:3.7.2
+    steps:
+      - checkout
+      - run: 
+          name: Setup env
+          command: |
+            virtualenv venv
+            . venv/bin/activate
+            pip install -r packages/regression_model/requirements.txt
+      - run: 
+          name: Publish model
+          command: |
+            . venv/bin/activate
+            PYTHONPATH=./packages/regression_model python3 packages/regression_model/regression_model/train_pipeline.py
+            ./cicleci/project/venv/lib/python3.7/site-packages/regression_model/trained_models ./packages/regression_model/trained_models/
 workflows:
   version: 2
   test-all:

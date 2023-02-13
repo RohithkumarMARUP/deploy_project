@@ -51,7 +51,7 @@ jobs:
             PYTHONPATH=./packages/regression_model python3 packages/regression_model/regression_model/train_pipeline.py
             ./scripts/publish_model.sh ./packages/regression_model/
 
-  build_and _save_pipeline:
+  build_and_save_pipeline:
     working_directory: ~/cicleci/project
     docker:
       - image: circleci/python:3.7.2
@@ -73,9 +73,11 @@ workflows:
   version: 2
   test-all:
     jobs:
+      - build_and_save_pipeline
       - test_regression_model
       - test_ml_api
       - train_and_upload_regression_model
       - test_ml_api:
           requires:
+            - build_and_save_pipeline
             - train_and_upload_regression_model
